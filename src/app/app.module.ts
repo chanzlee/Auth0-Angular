@@ -40,8 +40,9 @@ import { NoAccessComponent } from './no-access/no-access.component';
     ])
   ],
   providers: [
+    //Getting order from server
     OrderService,
-
+    //Log in/ Log out
     AuthService,
 
     // For creating a mock back-end.

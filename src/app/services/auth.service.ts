@@ -3,6 +3,7 @@ import { Http } from '@angular/http';
 
 @Injectable()
 export class AuthService {
+  // dependent on http service
   constructor(private http: Http) {
   }
 
@@ -11,6 +12,7 @@ export class AuthService {
       JSON.stringify(credentials));
   }
 
+  //should be implemented
   logout() { 
   }
 

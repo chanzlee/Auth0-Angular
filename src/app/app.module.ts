@@ -1,4 +1,4 @@
-import { AuthHttp, AUTH_PROVIDERS, provideAuth, AuthConfig } from 'angular2-jwt/angular2-jwt';
+import { AuthHttp, AUTH_PROVIDERS, provideAuth, AuthConfig } from 'angular2-jwt';
 import { OrderService } from './services/order.service';
 import { MockBackend } from '@angular/http/testing';
 import { fakeBackendProvider } from './helpers/fake-backend';
@@ -31,6 +31,7 @@ import { NoAccessComponent } from './no-access/no-access.component';
     BrowserModule,
     FormsModule,
     HttpModule,
+    //4 routers
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
       { path: 'admin', component: AdminComponent },
@@ -43,7 +44,7 @@ import { NoAccessComponent } from './no-access/no-access.component';
 
     AuthService,
 
-    // For creating a mock back-end. You don't need these in a real app. 
+    // For creating a mock back-end.
     fakeBackendProvider,
     MockBackend,
     BaseRequestOptions

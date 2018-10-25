@@ -15,8 +15,10 @@ export class LoginComponent {
     private authService: AuthService) { }
 
   signIn(credentials) {
+    // returns observable (use post method inside service)
     this.authService.login(credentials)
       .subscribe(result => { 
+        //depend on whether this is true or not, navigate or throw error.
         if (result)
           this.router.navigate(['/']);
         else  

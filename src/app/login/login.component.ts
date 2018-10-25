@@ -1,6 +1,6 @@
 import { AuthService } from './../services/auth.service';
 import { Component } from '@angular/core';
-import { Router } from "@angular/router";
+import { Router, ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: 'login',
@@ -12,6 +12,7 @@ export class LoginComponent {
 
   constructor(
     private router: Router, 
+    private route: ActivatedRoute,
     private authService: AuthService) { }
 
   signIn(credentials) {
@@ -19,8 +20,11 @@ export class LoginComponent {
     this.authService.login(credentials)
       .subscribe(result => { 
         //depend on whether this is true or not, navigate or throw error.
-        if (result)
-          this.router.navigate(['/']);
+        if (result) {
+          //instead of redirect hompage every user, check whether there are queryparam passed along as argument and try redirect them to the url.
+          let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
+          this.router.navigate([returnUrl || '/']);
+        }
         else  
           this.invalidLogin = true; 
       });

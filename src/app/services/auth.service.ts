@@ -55,5 +55,12 @@ export class AuthService {
     //not expired and not null === user logged in.
     return !isExpired;
   }
+
+  //Jwt has admin info inside, so try to decode that info if token is truthy.
+  get currentUser() {
+    let token = localStorage.getItem('token');
+    if (!token) return null;
+    return new JwtHelper().decodeToken(token);
+  }
 }
 

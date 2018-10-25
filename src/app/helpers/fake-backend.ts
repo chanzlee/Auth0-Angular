@@ -8,7 +8,10 @@ export function fakeBackendFactory(
     options: BaseRequestOptions) {
         
   //extract from jwt.io
-  let token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6Ik1vc2ggSGFtZWRhbmkiLCJhZG1pbiI6dHJ1ZX0.iy8az1ZDe-_hS8GLDKsQKgPHvWpHl0zkQBqy1QIPOkA';
+  // let token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkNoYW4gTGVlIiwiYWRtaW4iOnRydWV9.obmYmMNESPR8361BuMWjOA7W8HQs6jJqArnai8jkO6U';
+
+  // account with admin === false;
+  let token: string;
     
   backend.connections.subscribe((connection: MockConnection) => {
     //Using the setTimeout() function to simulate an  asynchronous call to the server that takes 1 second. 
@@ -25,12 +28,21 @@ export function fakeBackendFactory(
 
 
         //if hard coded credential matches with user input, response with 200.
-        if (body.email === 'mosh@domain.com' && body.password === '1234') {
+        if (body.email === 'chanethanlee@gmail.com' && body.password === '1234') { 
+          token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkNoYW4gTGVlIiwiYWRtaW4iOnRydWV9.obmYmMNESPR8361BuMWjOA7W8HQs6jJqArnai8jkO6U';
           connection.mockRespond(new Response(
             new ResponseOptions({
               status: 200,
               body: { token: token }
            })));
+        } else if (body.email === 'kennethdu3@gmail.com' && body.password === '1234') { 
+          token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkxIiwibmFtZSI6Iktlbm5ldGggRHUiLCJhZG1pbiI6ZmFsc2V9.aTzIHqehcVxLu61b_nXHx-0m1zdRpZzygWfyb4OBK_M';
+          connection.mockRespond(new Response(
+            new ResponseOptions({
+              status: 200,
+              body: { token: token }
+           })));
+        
         } else {
           //Bad user request.
           connection.mockRespond(new Response(
